@@ -34,11 +34,6 @@ public class SnapController : MonoBehaviour
             //If there is no closest snap point yet, or if this distance is smaller than the previous "closest distance"...
             if (closestSnapPoint == null || currentDistance < closestDistance)
             {
-                foreach (Draggable drag in draggableObjects)
-                {
-                    if ((drag.transform.localPosition == snapPoint.transform.localPosition) && (drag.gameObject != draggable.gameObject))
-                        return;
-                }
                 //The closest snap point is THIS snap point! And the closest distance is the current distance right now!
                 closestSnapPoint = snapPoint;
                 closestDistance = currentDistance;
@@ -49,6 +44,13 @@ public class SnapController : MonoBehaviour
         //if a "closest snap point" exists and the closest distance is within the snap range,
         if (closestSnapPoint != null && closestDistance <= snapRange)
         {
+
+            foreach (Draggable drag in draggableObjects)
+            {
+                if ((drag.transform.localPosition == closestSnapPoint.transform.localPosition) && (drag.gameObject != draggable.gameObject))
+                    return;
+            }
+
             //Set the position baybeee!!
             draggable.transform.localPosition = closestSnapPoint.localPosition;
         }

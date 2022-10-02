@@ -1,10 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class HandController : MonoBehaviour
+public class HandAnimation : MonoBehaviour
 {
-    public bool isDown;
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +13,6 @@ public class HandController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Input
+        
     }
 }
