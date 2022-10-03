@@ -18,12 +18,19 @@ public class Draggable : MonoBehaviour
     public GameObject shadowRef;
     private GameObject shadow = null;
 
+    private AudioSource pickup;
+    private AudioSource drop;
+
     private void Start()
     {
         colliding = false;
         hand = GameObject.Find("Hand");
         handChild = hand.transform.GetChild(0).gameObject;
         handComponent = hand.GetComponent<Hand>();
+
+        pickup = GetComponents<AudioSource>()[0];
+        drop = GetComponents<AudioSource>()[1];
+
     }
 
     void OnCollisionStay2D(Collision2D collision)
@@ -48,8 +55,10 @@ public class Draggable : MonoBehaviour
                 //confirm status as being dragged, and make the hand's status to be dragged
                 isDragged = true;
                 handComponent.isDragging = true;
+                handComponent.anim.SetBool("Dragging", true);
                 //move the pencil 2 units up
                 transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 2, -4f);
+                pickup.Play();
             }
 
 
@@ -63,6 +72,8 @@ public class Draggable : MonoBehaviour
                 {
                     isDragged = false;
                     handComponent.isDragging = false;
+                    handComponent.anim.SetBool("Dragging", false);
+                    drop.Play();
                 }
                 else
                 {

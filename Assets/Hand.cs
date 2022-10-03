@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Hand : MonoBehaviour
 {
-    
+    public Animator anim;
     public float speed = 10.4f;
     public bool isDragging = false;
     
