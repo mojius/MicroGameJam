@@ -79,7 +79,23 @@ public class SnapController : MonoBehaviour
         }
 
         if (correct)
-            mgj.WinGame();
+        {
+            StartCoroutine("WinGameCheck");
+        }
+
+
+    }
+
+    private IEnumerator WinGameCheck()
+    {
+        while (true)
+        {
+            if (mgj.GetTimer() < 0.1f)
+                mgj.WinGame();
+            yield return null;
+        }
+
+
 
     }
 
