@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 10690459}
   - component: {fileID: 10690458}
+  - component: {fileID: 10690460}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -201,13 +202,27 @@ Transform:
   m_GameObject: {fileID: 10690457}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.21, y: 1, z: -8}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.9917355}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 106638742}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &10690460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10690457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01113660d1b484b5d8ae8259ffb6b5cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10.4
+  isDragging: 0
 --- !u!1 &32448805
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,6 +322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 0}
+  handComponent: {fileID: 0}
   shadowRef: {fileID: 1875474346960485381, guid: 62bcaa110e8e73c408ee7e56fc11741d, type: 3}
 --- !u!61 &32448809
 BoxCollider2D:
@@ -344,6 +360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 106638742}
   - component: {fileID: 106638743}
+  - component: {fileID: 106638744}
   m_Layer: 0
   m_Name: Hand Collider
   m_TagString: Untagged
@@ -359,7 +376,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106638741}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -392,6 +409,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!50 &106638744
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106638741}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &149265454
 GameObject:
   m_ObjectHideFlags: 0
@@ -930,6 +968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 0}
+  handComponent: {fileID: 0}
   shadowRef: {fileID: 1875474346960485381, guid: 62bcaa110e8e73c408ee7e56fc11741d, type: 3}
 --- !u!61 &775074541
 BoxCollider2D:
@@ -1087,6 +1126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 0}
+  handComponent: {fileID: 0}
   shadowRef: {fileID: 1875474346960485381, guid: 62bcaa110e8e73c408ee7e56fc11741d, type: 3}
 --- !u!61 &848046730
 BoxCollider2D:
@@ -1306,6 +1346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 0}
+  handComponent: {fileID: 0}
   shadowRef: {fileID: 1875474346960485381, guid: 62bcaa110e8e73c408ee7e56fc11741d, type: 3}
 --- !u!61 &987174467
 BoxCollider2D:
@@ -1494,6 +1535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 0}
+  handComponent: {fileID: 0}
   shadowRef: {fileID: 1875474346960485381, guid: 62bcaa110e8e73c408ee7e56fc11741d, type: 3}
 --- !u!61 &1388481735
 BoxCollider2D:
@@ -1761,6 +1803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 10690457}
+  handComponent: {fileID: 0}
   shadowRef: {fileID: 1875474346960485381, guid: 62bcaa110e8e73c408ee7e56fc11741d, type: 3}
 --- !u!61 &1767688588
 BoxCollider2D:
@@ -1956,6 +1999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 0}
+  handComponent: {fileID: 0}
   shadowRef: {fileID: 1875474346960485381, guid: 62bcaa110e8e73c408ee7e56fc11741d, type: 3}
 --- !u!61 &2060991335
 BoxCollider2D:

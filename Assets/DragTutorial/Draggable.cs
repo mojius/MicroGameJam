@@ -5,12 +5,13 @@ using UnityEngine;
 public class Draggable : MonoBehaviour
 {
     public GameObject hand;
+    public GameObject handChild;
     public Hand handComponent;
-    public delegate void DragEndedDelegate(Draggable draggableObject);
+    public delegate bool DragEndedDelegate(Draggable draggableObject);
 
     public DragEndedDelegate dragEndedCallback;
 
-    private bool colliding = false;
+    private bool colliding;
     private bool isDragged = false;
     private Vector3 handDragStartPosition;
     private Vector3 spriteDragStartPosition;
@@ -19,7 +20,9 @@ public class Draggable : MonoBehaviour
 
     private void Start()
     {
+        colliding = false;
         hand = GameObject.Find("Hand");
+        handChild = hand.transform.GetChild(0).gameObject;
         handComponent = hand.GetComponent<Hand>();
     }
 
@@ -27,8 +30,6 @@ public class Draggable : MonoBehaviour
     {
         if (collision.gameObject.name == "Hand Collider")
             colliding = true;
-        else
-            colliding = false;
     }
 
 
@@ -42,38 +43,44 @@ public class Draggable : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (colliding)
+            if (colliding && handComponent.isDragging == false)
             {
+                //confirm status as being dragged, and make the hand's status to be dragged
                 isDragged = true;
-                handDragStartPosition = hand.transform.GetChild(0).transform.localPosition;
-                spriteDragStartPosition = transform.localPosition;
+                handComponent.isDragging = true;
+                //move the pencil 2 units up
                 transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 2, -4f);
-                shadow = Instantiate(shadowRef, new Vector3(transform.localPosition.x, transform.localPosition.y, -3f), new Quaternion());
             }
-        }
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            if (isDragged)
-            {
-                transform.localPosition = spriteDragStartPosition + (hand.transform.GetChild(0).transform.localPosition);
-                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 2, -4f);
-                shadow.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y - 2, -3f);
-            }
-        }
 
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            if (isDragged)
+            //attempt to put the pencil down
+            else if (isDragged && handComponent.isDragging)
             {
-                handComponent.isDragging = false;
-                isDragged = false;
+                //if you do put the pencil down, move it back down 2 units and reset the states
+                //if 
                 transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y - 2, -2f);
-                dragEndedCallback(this);
-                Destroy(shadow);
-            }
+                if (dragEndedCallback(this))
+                {
+                    isDragged = false;
+                    handComponent.isDragging = false;
+                }
+                else
+                {
+                    transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 2, -4f);
 
+                }
+            }
+        }
+
+
+        if (isDragged)
+        {
+            //The pencil should follow the x coordinate of the hand box collider
+            transform.localPosition = new Vector3(handChild.transform.position.x, transform.localPosition.y, transform.localPosition.z);
         }
 
     }
+
+
+
 }

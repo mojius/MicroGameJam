@@ -21,7 +21,7 @@ public class SnapController : MonoBehaviour
     }
 
 
-    private void OnDragEnded(Draggable draggable)
+    private bool OnDragEnded(Draggable draggable)
     {
         //closest distance to a snap point
         float closestDistance = -1;
@@ -49,15 +49,22 @@ public class SnapController : MonoBehaviour
 
             foreach (Draggable drag in draggableObjects)
             {
-                if ((drag.transform.localPosition == closestSnapPoint.transform.localPosition) && (drag.gameObject != draggable.gameObject))
-                    return;
+                //If the spot you want to drag it to is occupied, return false
+                if ((drag.transform.localPosition.x == closestSnapPoint.transform.localPosition.x) && (drag.gameObject != draggable.gameObject))
+                {
+                    return false;
+                }
             }
 
             //Set the position baybeee!!
             draggable.transform.localPosition = closestSnapPoint.localPosition;
+            CheckArrangement();
+
+            return true;
         }
 
-        CheckArrangement();
+        return false;
+
     }
     
     //Cursed as hell
@@ -67,7 +74,7 @@ public class SnapController : MonoBehaviour
         //From element 6 to 11, check
         for (int i = 0; i < 7; i++)
         {
-            if (snapPoints[i+5].transform.localPosition != draggableObjects[i].transform.localPosition)
+            if (snapPoints[i + 5].transform.localPosition.x != draggableObjects[i].transform.localPosition.x)
                 correct = false;
         }
 
