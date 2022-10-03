@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5ae33620fffdea64ea52eca052412830
+guid: 75c2ad6eca677ce43aed6aa046ce201b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -45,8 +45,8 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.5046686, y: 0.48638353}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -117,43 +117,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: The Hand_0
+      name: The_Hand_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 3000
-        height: 1800
+        width: 3525
+        height: 2300
       alignment: 9
-      pivot: {x: 0.2025279, y: 0.164903}
+      pivot: {x: 0.1014109, y: 0.1287861}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7968a32b00e263f42a611fd98e15aa83
-      internalID: -918764607
+      spriteID: aa6343124e3054d4e941cb5fe35ec0d2
+      internalID: -690598930
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The Hand_1
+      name: The_Hand_1
       rect:
         serializedVersion: 2
-        x: 3000
+        x: 3525
         y: 0
-        width: 3000
-        height: 1800
+        width: 3525
+        height: 2300
       alignment: 9
-      pivot: {x: 0.2025279, y: 0.164903}
+      pivot: {x: 0.1014109, y: 0.1287861}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7add835a1cf76054e9073fb03873c332
-      internalID: -1943963649
+      spriteID: c4a35506872355a478226a1727416d96
+      internalID: -694500283
       vertices: []
       indices: 
       edges: []
@@ -162,15 +162,15 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      The Hand_1: -1943963649
-      The Hand_0: -918764607
+      The_Hand_1: -694500283
+      The_Hand_0: -690598930
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

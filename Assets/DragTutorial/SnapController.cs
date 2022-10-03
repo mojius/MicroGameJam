@@ -8,11 +8,16 @@ public class SnapController : MonoBehaviour
     public List<Draggable> draggableObjects;
     public float snapRange = 0.5f;
     private MicrogameJamController mgj;
-    
+    private float fade;
 
+
+    private AudioSource chime;
+    private AudioSource meow;
 
     private void Start()
     {
+        chime = GetComponents<AudioSource>()[0];
+        meow = GetComponents<AudioSource>()[1];
         mgj = GameObject.Find("Microgame Controller").GetComponent<MicrogameJamController>();
         foreach(Draggable draggable in draggableObjects)
         {
@@ -81,8 +86,36 @@ public class SnapController : MonoBehaviour
         if (correct)
         {
             StartCoroutine("WinGameCheck");
+            StartCoroutine("EndingAnimation");
         }
 
+
+    }
+
+    private IEnumerator EndingAnimation()
+    {
+        Destroy(GameObject.Find("Hand"));
+
+        SpriteRenderer BG = GameObject.Find("EndingBG").GetComponent<SpriteRenderer>();
+        BG.color = new Color(BG.color.r, BG.color.g, BG.color.g, 1f);
+        SpriteRenderer ending1 = GameObject.Find("ENDING_1").GetComponent<SpriteRenderer>();
+
+        chime.Play();
+        for (fade = 0f; fade < 1f; fade += (.5f * Time.deltaTime))
+        {
+            ending1.color = new Color(ending1.color.r, ending1.color.g, ending1.color.g, fade);
+            yield return null;
+        }
+
+
+        yield return new WaitForSeconds(0.6f);
+        meow.Play();
+        SpriteRenderer ending2 = GameObject.Find("ENDING_2").GetComponent<SpriteRenderer>();
+        ending2.color = new Color(ending1.color.r, ending1.color.g, ending1.color.g, 1f);
+        ending1.color = new Color(ending1.color.r, ending1.color.g, ending1.color.g, 0f);
+
+
+        yield return null;
 
     }
 
