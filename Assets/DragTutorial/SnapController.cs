@@ -8,6 +8,8 @@ public class SnapController : MonoBehaviour
     public List<Draggable> draggableObjects;
     public float snapRange = 0.5f;
     private MicrogameJamController mgj;
+    
+
 
     private void Start()
     {
